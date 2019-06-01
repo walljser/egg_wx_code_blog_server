@@ -28,7 +28,7 @@ module.exports = app => {
       type: STRING(32),
     },
     description: {
-      type: STRING(32),
+      type: STRING(128),
     },
     created_time: {
       type: DATE,

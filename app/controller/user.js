@@ -14,7 +14,18 @@ const createRule = {
   },
 };
 
+/**
+ * @Controller user 用户接口
+ */
 class UserController extends Controller {
+  /**
+   * @summary 获取用户
+   * @description 分页获取用户信息
+   * @router get /v1/users
+   * @request query integer $offset
+   * @request query integer $limit
+   * @response 200 queryUserResponse successed
+   */
   async index() {
     const { ctx } = this;
     const limit = ctx.helper.toInt(ctx.query.$limit);

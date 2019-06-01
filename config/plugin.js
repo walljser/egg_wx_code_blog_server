@@ -14,6 +14,10 @@ module.exports = {
     enable: true,
     package: 'egg-sequelize',
   },
+  swaggerdoc: {
+    enable: true,
+    package: 'egg-swagger-doc',
+  },
   // oauth2Server: {
   //   enable: true,
   //   package: 'egg-oauth2-server',

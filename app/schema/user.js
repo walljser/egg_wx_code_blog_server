@@ -1,0 +1,40 @@
+'use strict';
+
+module.exports = app => {
+  const { STRING, DATE, BIGINT } = app.Sequelize;
+
+  return {
+    id: {
+      type: BIGINT,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    username: {
+      type: STRING(64),
+      allowNull: false,
+    },
+    password: {
+      type: STRING(32),
+      allowNull: false,
+    },
+    email: {
+      type: STRING(32),
+    },
+    nickname: {
+      type: STRING(32),
+    },
+    position: {
+      type: STRING(32),
+    },
+    description: {
+      type: STRING(32),
+    },
+    created_time: {
+      type: DATE,
+    },
+    last_modified_time: {
+      type: DATE,
+    },
+  };
+};

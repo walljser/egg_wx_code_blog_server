@@ -18,8 +18,8 @@ module.exports = {
     enable: true,
     package: 'egg-swagger-doc',
   },
-  // oauth2Server: {
-  //   enable: true,
-  //   package: 'egg-oauth2-server',
-  // },
+  oAuth2Server: {
+    enable: true,
+    package: 'egg-oauth2-server',
+  },
 };

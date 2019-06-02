@@ -4,6 +4,6 @@ module.exports = {
   SUCCESS_CODE: 100,
   UNIQUE_CODE: 200,
   ERROR_MESSAGE: {
-    hasExist: 'has exist',
+    hasExists: 'has exists',
   },
 };

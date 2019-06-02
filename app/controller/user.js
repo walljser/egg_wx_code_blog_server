@@ -53,12 +53,16 @@ class UserController extends Controller {
         id: res.id,
       }, 201);
     } catch (err) {
-      if (err.message === ctx.ERROR_MESSAGE.hasExist) {
+      if (err.message === ctx.ERROR_MESSAGE.hasExists) {
         this.failure(ctx.UNIQUE_CODE, '用户名已存在');
       } else {
         throw new Error(err);
       }
     }
+  }
+
+  async token() {
+    this.ctx.body = this.ctx.state.oauth.token
   }
 }
 

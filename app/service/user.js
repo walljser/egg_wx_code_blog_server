@@ -12,11 +12,14 @@ class UserService extends Service {
    */
   async createNew(params = {}) {
     const { username, password } = params;
-    const findUser = await this.ctx.model.User.findByUsername({ username });
+    console.log(username)
+    const findUser = await this.ctx.model.User.getByUsername({ username });
     if (findUser) {
-      throw new Error(this.ctx.ERROR_MESSAGE.hasExist);
+      throw new Error(this.ctx.ERROR_MESSAGE.hasExists);
     }
-    const user = await this.ctx.model.User.create({
+    console.log(username)
+    console.log(password)
+    const user = await this.ctx.model.User.register({
       username,
       password,
       email: username,

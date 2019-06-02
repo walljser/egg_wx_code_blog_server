@@ -19,8 +19,8 @@ module.exports = {
     }
 
     return app.model.define(name, attrs, attributes1 || {
-      createdAt: 'created_time',
-      updatedAt: 'last_modified_time',
+      createdAt: 'createdTime',
+      updatedAt: 'lastModifiedTime',
       freezeTableName: true,
       getterMethods: {
         createdTime() {
@@ -31,7 +31,7 @@ module.exports = {
           return createdTime;
         },
         lastModifiedTime() {
-          const lastModifiedTime = this.getDataValue('last_modified_time');
+          const lastModifiedTime = this.getDataValue('lastModifiedTime');
           // if (lastModifiedTime) {
           //   return app.formatToDayTime(lastModifiedTime);
           // }

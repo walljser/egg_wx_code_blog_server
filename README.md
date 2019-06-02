@@ -1,5 +1,6 @@
 # egg_wx_code_blog_server
 
+https://github.com/paprikaLang/egg-oauth
 
 
 ## QuickStart

@@ -9,13 +9,14 @@ module.exports = app => {
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
+      unique: true,
     },
     username: {
       type: STRING(64),
       allowNull: false,
     },
-    password: {
-      type: STRING(32),
+    hashedPassword: {
+      type: STRING,
       allowNull: false,
     },
     email: {
@@ -30,10 +31,10 @@ module.exports = app => {
     description: {
       type: STRING(128),
     },
-    created_time: {
+    createdTime: {
       type: DATE,
     },
-    last_modified_time: {
+    lastModifiedTime: {
       type: DATE,
     },
   };

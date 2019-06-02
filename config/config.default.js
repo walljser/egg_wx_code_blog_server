@@ -47,8 +47,8 @@ module.exports = appInfo => {
       //   tokenUrl: 'http://petstore.swagger.io/oauth/dialog',
       //   flow: 'password',
       //   scopes: {
-      //     'write:access_token': 'write access_token',
-      //     'read:access_token': 'read access_token',
+      //     'write:accessToken': 'write accessToken',
+      //     'read:accessToken': 'read accessToken',
       //   },
       // },
     },
@@ -57,12 +57,13 @@ module.exports = appInfo => {
     routerMap: false,
     enable: true,
   }
-  // config.oauth2Server = {
-  //   grants: [
-  //     'password',
-  //     // 'client_credentials',
-  //   ],
-  // };
+  config.oAuth2Server = {
+    debug: true,
+    grants: [
+      'password', 'authorization_code', 'refreshToken'
+      // 'client_credentials',
+    ],
+  };
 
   // add your middleware config here
   config.middleware = [

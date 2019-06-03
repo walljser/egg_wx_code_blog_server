@@ -4,28 +4,28 @@ module.exports = app => {
   const { STRING, DATE, BIGINT } = app.Sequelize;
 
   return {
-    accessToken: {
+    access_token: {
       type: STRING,
       unique: true,
       primaryKey: true,
     },
-    accessTokenExpiresAt: {
+    access_token_expires_at: {
       type: DATE,
     },
     scope: {
       type: STRING,
     },
-    clientId: {
+    client_id: {
       type: STRING(38),
     },
-    userId: {
+    user_id: {
       type: BIGINT,
       allowNull: false,
     },
-    createdTime: {
+    created_time: {
       type: DATE,
     },
-    lastModifiedTime: {
+    last_modified_time: {
       type: DATE,
     },
   };

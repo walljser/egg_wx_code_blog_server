@@ -10,23 +10,23 @@ module.exports = app => {
       primaryKey: true,
       defaultValue: UUIDV4,
     },
-    clientSecret: {
+    client_secret: {
       type: STRING(64),
       allowNull: false,
     },
-    clientName: {
+    client_name: {
       type: STRING(32),
     },
-    redirectUris: {
+    redirect_uris: {
       type: STRING(1024),
     },
     grants: {
       type: STRING(1024),
     },
-    createdTime: {
+    created_time: {
       type: DATE,
     },
-    lastModifiedTime: {
+    last_modified_time: {
       type: DATE,
     },
   };

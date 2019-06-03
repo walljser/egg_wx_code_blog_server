@@ -19,23 +19,23 @@ module.exports = {
     }
 
     return app.model.define(name, attrs, attributes1 || {
-      createdAt: 'createdTime',
-      updatedAt: 'lastModifiedTime',
+      createdAt: 'created_time',
+      updatedAt: 'last_modified_time',
       freezeTableName: true,
       getterMethods: {
-        createdTime() {
-          const createdTime = this.getDataValue('create_time')
-          // if (createdTime) {
-          //   return app.formatToDayTime(createdTime);
+        created_time() {
+          const created_time = this.getDataValue('created_time');
+          // if (created_time) {
+          //   return app.formatToDayTime(created_time);
           // }
-          return createdTime;
+          return created_time;
         },
-        lastModifiedTime() {
-          const lastModifiedTime = this.getDataValue('lastModifiedTime');
-          // if (lastModifiedTime) {
-          //   return app.formatToDayTime(lastModifiedTime);
+        last_modified_time() {
+          const last_modified_time = this.getDataValue('last_modified_time');
+          // if (last_modified_time) {
+          //   return app.formatToDayTime(last_modified_time);
           // }
-          return lastModifiedTime;
+          return last_modified_time;
         },
       },
       setterMethods: {},

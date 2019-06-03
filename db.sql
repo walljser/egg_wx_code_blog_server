@@ -12,7 +12,7 @@ CREATE TABLE user
   nickname                varchar(32) comment '昵称',
   position                varchar(32) comment '职称',
   description             varchar(128) comment '简介',
-  create_time             Date comment '创建时间',
+  created_time             Date comment '创建时间',
   primary key(id)
 )
 auto_increment = 100000

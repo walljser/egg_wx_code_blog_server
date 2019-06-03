@@ -22,9 +22,9 @@ module.exports = app => {
     });
   };
 
-  User.register = async (fields) => {
+  User.register = async fields => {
     console.log(fields);
-    fields.hashedPassword = hashPassword(fields.password);
+    fields.hashed_password = hashPassword(fields.password);
     delete fields.password;
     console.log(fields);
     return await User.create(fields);
@@ -32,18 +32,18 @@ module.exports = app => {
 
   User.getUser = async (username, password) => {
     return await User.authenticate(username, password);
-  }
+  };
 
   User.authenticate = async (username, password) => {
     const user = await User.findOne({
       where: {
         username,
       },
-      attributes: ['id', 'username', 'hashedPassword', 'email', 'nickname', 'position', 'description'],
+      attributes: [ 'id', 'username', 'hashed_password', 'email', 'nickname', 'position', 'description' ],
     });
     if (!user) return;
-    return bcrypt.compareSync(password, user.hashedPassword) ? (delete user.dataValues.hashedPassword && user) : null;
-  }
+    return bcrypt.compareSync(password, user.hashed_password) ? (delete user.dataValues.hashed_password && user) : null;
+  };
 
   User.query = async ({ attributes, offset, limit, filter = {}, sort = [] }) => {
     const order = app.getSortInfo(sort);

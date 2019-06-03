@@ -6,17 +6,17 @@ module.exports = app => {
       this.ctx = ctx;
     }
 
-    async getClient(clientId, clientSecret) {
+    async getClient(client_id, client_secret) {
       try {
         console.log('getClient invoked---------')
-        const client = await this.ctx.model.Client.getClient(clientId, clientSecret);
+        const client = await this.ctx.model.Client.getClient(client_id, client_secret);
         if (!client) return false;
         const res = {
           id: client.id,
-          redirectUris: client.redirectUris ? client.redirectUris.split(',') : '',
+          redirect_uris: client.redirect_uris ? client.redirect_uris.split(',') : '',
           grants: client.grants ? client.grants.split(',') : '',
         };
-        return res
+        return res;
       } catch (err) {
         this.ctx.logger.debug(err);
         return false;
@@ -34,27 +34,26 @@ module.exports = app => {
     }
 
     /**
-     * 获取accessToken
+     * 获取access_token
      *
-     * @param {*} bearerToken
-     * @returns
+     * @param {*} bearerToken breaer
+     * @return
      * @memberof Model
      */
     async getAccessToken(bearerToken) {
-      console.log('getAccessToken invoked---------')
+      console.log('getAccessToken invoked---------');
       try {
-        const token = this.ctx.model.AccessToken.getAccessToken(bearerToken);
+        const token = await this.ctx.model.AccessToken.getAccessToken(bearerToken);
         if (!token) return;
-        console.log(token)
         return {
-          accessToken: token.accessToken,
-          accessTokenExpiresAt: token.accessTokenExpiresAt,
+          accessAoken: token.access_token,
+          accessTokenExpiresAt: token.access_token_expires_at,
           scoped: token.scoped,
           client: {
-            id: token.clientId,
+            id: token.client_id,
           },
           user: {
-            id: token.userId,
+            id: token.user_id,
           },
         };
       } catch (err) {
@@ -69,15 +68,15 @@ module.exports = app => {
      * @param {*} token
      * @param {*} client
      * @param {*} user
-     * @returns
+     * @return
      * @memberof Model
      */
     async saveToken(token, client, user) {
       try {
-        console.log('saveAccessToken invoked---------')
+        console.log('saveToken invoked---------')
         await this.ctx.model.AccessToken.saveAccessToken(token, client, user);
         await this.ctx.model.RefreshToken.saveRefreshToken(token, client, user);
-        return {
+        const res = {
           accessToken: token.accessToken,
           accessTokenExpiresAt: token.accessTokenExpiresAt,
           refreshToken: token.refreshToken,
@@ -85,6 +84,8 @@ module.exports = app => {
           client: { id: client.id },
           user: { id: user.id },
         };
+        console.log(res);
+        return res;
       } catch (err) {
         this.ctx.logger.debug(err);
         return false;
@@ -92,25 +93,25 @@ module.exports = app => {
     }
 
     /**
-     * 获取refreshToken
+     * 获取refresh_token
      *
-     * @param {*} refreshToken
-     * @returns
+     * @param {*} refresh_token
+     * @return
      * @memberof Model
      */
-    async getRefreshToken(refreshToken) {
+    async getRefreshToken(refresh_token) {
       try {
-        console.log('getRefreshToken invoked---------')
-        const refToken = await this.ctx.model.RefreshToken.getRefreshToken(refreshToken)
-        if (!refToken) return
-        const user = await this.ctx.model.User.getByUserId({ id: refToken.userId })
-        if (!user) return
+        console.log('getRefreshToken invoked---------');
+        const refToken = await this.ctx.model.RefreshToken.getRefreshToken(refresh_token)
+        if (!refToken) return;
+        const user = await this.ctx.model.User.getByUserId({ id: refToken.user_id })
+        if (!user) return;
         return {
-          refreshToken: refToken.refreshToken,
-          refreshTokenExpiresAt: refToken.refreshTokenExpiresAt,
+          refresh_token: refToken.refresh_token,
+          refresh_token_expires_at: refToken.refresh_token_expires_at,
           scope: refToken.scope,
-          client: { id: refToken.clientId }, // with 'id' property
-          user: user,
+          client: { id: refToken.client_id }, // with 'id' property
+          user,
         };
       } catch (err) {
         return false;
@@ -118,15 +119,15 @@ module.exports = app => {
     }
 
     /**
-     * 删除refreshToken
+     * 删除refresh_token
      *
      * @param {*} token
-     * @returns
+     * @return
      * @memberof Model
      */
     async revokeToken(token) {
       try {
-        console.log('revokeToken invoked---------')
+        console.log('revokeToken invoked---------');
         await this.ctx.model.RefreshToken.delRefreshToken(token);
       } catch (error) {
         this.ctx.logger.debug(error);
@@ -138,7 +139,7 @@ module.exports = app => {
      * 获取授权码 authorizationCode
      *
      * @param {*} authorizationCode
-     * @returns
+     * @return
      * @memberof Model
      */
     async getAuthorizationCode(authorizationCode) {
@@ -149,15 +150,15 @@ module.exports = app => {
           code: authorizationCode,
         });
         if (!authCode) return;
-        const user = await this.ctx.model.UserModel.getByUserId({ id: authCode.userId });
-        if (!user) return
+        const user = await this.ctx.model.UserModel.getByUserId({ id: authCode.user_id });
+        if (!user) return;
         return {
           code: authCode.code,
-          expiresAt: authCode.expiresAt,
-          redirectUri: authCode.redirectUri,
+          expires_at: authCode.expires_at,
+          redirect_uri: authCode.redirect_uri,
           scope: authCode.scope,
-          client: { id: authCode.clientId },
-          user: user,
+          client: { id: authCode.client_id },
+          user,
         };
       } catch (error) {
         this.ctx.logger.debug(error);
@@ -171,17 +172,17 @@ module.exports = app => {
      * @param {*} code
      * @param {*} client
      * @param {*} user
-     * @returns
+     * @return
      * @memberof Model
      */
     async saveAuthorizationCode(code, client, user) {
       try {
         console.log('saveAuthorizationCode invoked---------')
-        await this.ctx.model.AuthorizationCode.saveAuthorizationCode(code, client, user)
+        await this.ctx.model.AuthorizationCode.saveAuthorizationCode(code, client, user);
         return {
           authorization_code: code.authorization_code,
-          expiresAt: code.expiresAt,
-          redirectUri: code.redirectUri,
+          expires_at: code.expires_at,
+          redirect_uri: code.redirect_uri,
           scope: code.scope,
           client: { id: client.id },
           user: { id: user.id },
@@ -195,7 +196,7 @@ module.exports = app => {
      * 删除授权码
      *
      * @param {*} code
-     * @returns
+     * @return
      * @memberof Model
      */
     async revokeAuthorizationCode(code) {

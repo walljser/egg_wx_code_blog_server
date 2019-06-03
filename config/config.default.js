@@ -47,8 +47,8 @@ module.exports = appInfo => {
       //   tokenUrl: 'http://petstore.swagger.io/oauth/dialog',
       //   flow: 'password',
       //   scopes: {
-      //     'write:accessToken': 'write accessToken',
-      //     'read:accessToken': 'read accessToken',
+      //     'write:access_token': 'write access_token',
+      //     'read:access_token': 'read access_token',
       //   },
       // },
     },
@@ -60,7 +60,7 @@ module.exports = appInfo => {
   config.oAuth2Server = {
     debug: true,
     grants: [
-      'password', 'authorization_code', 'refreshToken'
+      'password', 'authorization_code', 'refresh_token'
       // 'client_credentials',
     ],
   };

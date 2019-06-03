@@ -15,7 +15,7 @@ module.exports = app => {
       type: STRING(64),
       allowNull: false,
     },
-    hashedPassword: {
+    hashed_password: {
       type: STRING,
       allowNull: false,
     },
@@ -31,10 +31,10 @@ module.exports = app => {
     description: {
       type: STRING(128),
     },
-    createdTime: {
+    created_time: {
       type: DATE,
     },
-    lastModifiedTime: {
+    last_modified_time: {
       type: DATE,
     },
   };

@@ -5,23 +5,23 @@ module.exports = app => {
   const clientSchema = require('../schema/client.js')(app);
   const Client = db.defineModel(app, 'client', clientSchema);
 
-  Client.getClient = async (clientId, clientSecret) => {
+  Client.getClient = async (client_id, client_secret) => {
     const params = {
-      id: clientId,
+      id: client_id,
     };
-    if (clientSecret) {
-      params.clientSecret = clientSecret;
+    if (client_secret) {
+      params.client_secret = client_secret;
     }
     return await Client.findOne({
       where: params,
     });
   };
 
-  Client.find = async (params) => {
+  Client.find = async params => {
     return await Client.findOne({
       where: params,
       attributes: {
-        exclude: ['clientSecret']
+        exclude: [ 'client_secret' ],
       },
     });
   };
@@ -39,4 +39,4 @@ module.exports = app => {
   };
 
   return Client;
-}
+};

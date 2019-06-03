@@ -3,11 +3,11 @@
 const Controller = require('../common/core/base_controller');
 
 const createRule = {
-  clientName: {
+  client_name: {
     type: 'string',
     max: 32,
   },
-  clientSecret: {
+  client_secret: {
     type: 'string',
     max: 64,
   },

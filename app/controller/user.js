@@ -31,13 +31,17 @@ class UserController extends Controller {
     const limit = ctx.helper.toInt(ctx.query.$limit);
     const offset = ctx.helper.toInt(ctx.query.$offset);
     let resData;
+    const attributes = [ 'id', 'username', 'nickname', 'email', 'position', 'description', 'created_time', 'last_modified_time' ];
     if (limit >= 0 && offset >= 0) {
       resData = await ctx.model.User.query({
         offset,
         limit,
+        attributes,
       });
     } else {
-      resData = await ctx.model.User.findAll();
+      resData = await ctx.model.User.findAll({
+        attributes,
+      });
     }
     this.success(resData);
   }
@@ -62,7 +66,13 @@ class UserController extends Controller {
   }
 
   async token() {
-    this.ctx.body = this.ctx.state.oauth.token
+    this.ctx.body = this.ctx.state.oauth.token;
+  }
+
+  async authenticate() {
+    this.ctx.body = {
+      message: 'successed!',
+    };
   }
 }
 

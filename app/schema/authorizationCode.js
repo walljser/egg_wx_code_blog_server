@@ -9,23 +9,23 @@ module.exports = app => {
       primaryKey: true,
       unique: true,
     },
-    expiresAt: {
-      type: DATE
+    expires_at: {
+      type: DATE,
     },
-    redirectUri: {
+    redirect_uri: {
       type: STRING,
     },
-    clientId: {
+    client_id: {
       type: STRING(38),
     },
-    userId: {
+    user_id: {
       type: BIGINT,
       allowNull: false,
     },
-    createdTime: {
+    created_time: {
       type: DATE,
     },
-    lastModifiedTime: {
+    last_modified_time: {
       type: DATE,
     },
   };

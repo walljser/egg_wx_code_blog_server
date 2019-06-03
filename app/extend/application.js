@@ -8,7 +8,7 @@ module.exports = {
   //   return fecha.format(date, 'YYYY-MM-DD HH:mm')
   // }
   getSortInfo(sort) {
-    return _.isEmpty(sort) ? [[ 'createdTime', 'DESC' ]] : sort;
+    return _.isEmpty(sort) ? [[ 'created_time', 'DESC' ]] : sort;
   },
   getPaginationData({ rows, count }) {
     return {
